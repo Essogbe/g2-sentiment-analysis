@@ -3,11 +3,11 @@ from typing import Any
 
 from fastapi import APIRouter, HTTPException
 import requests
-from app.core.config import INPUT_EXAMPLE,HF_TOKEN,HF_API_URL
-from app.services.predict import MachineLearningModelHandlerScore
+from core.config import INPUT_EXAMPLE,HF_TOKEN,HF_API_URL
+
 from loguru import logger
 
-from app.api.schemas.prediction import (
+from api.schemas.prediction import (
     MachineLearningResponse,
 MachineLearningDataInput,
 HealthResponse
