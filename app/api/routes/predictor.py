@@ -1,26 +1,45 @@
 import json
-from fastapi import APIRouter, HTTPException
+from typing import Any
 
-from core.config import INPUT_EXAMPLE
-from services.predict import ModelHandlerScore
+from fastapi import APIRouter, HTTPException
+import requests
+from app.core.config import INPUT_EXAMPLE,HF_TOKEN,HF_API_URL
+from app.services.predict import MachineLearningModelHandlerScore
+
 from app.api.schemas.prediction import (
     MachineLearningResponse,
+MachineLearningDataInput,
+HealthResponse
 )
 
 router = APIRouter()
-
-model = ModelHandlerScore(
+"""
+model = MachineLearningModelHandlerScore(
     model_path="app/models",
     tokenizer_path="app/models",
 )
+"""
+headers = {"Authorization": f"Bearer {HF_TOKEN}"}
+
+def query(payload):
+    response = requests.post(HF_API_URL, headers=headers, json=payload)
+    return response.json(),response.status_code
+
 
 
 ## Change this portion for other types of models
 ## Add the correct type hinting when completed
-def get_prediction(text_to_analyse):
-    sentiment, _ = model.predict(text_to_analyse)
+def get_prediction(text_to_analyse) -> tuple[float,float]:
+    output,status = query({
+        "inputs": text_to_analyse,
+    })
     
-    return sentiment
+    if status==200:
+        pred=output[0]
+        pred.sort(key=lambda x: x['label'], reverse=False)
+        return pred[0]['score'],pred[1]['score']
+    else:
+        raise Exception(output['error'])
 
 
 @router.post(
@@ -38,23 +57,24 @@ async def predict(data_input: str):
     except Exception as err:
         raise HTTPException(status_code=500, detail=f"Exception: {err}")
 
-    return MachineLearningResponse(prediction=prediction)
+    return MachineLearningResponse(**prediction)
 
 
-# @router.get(
-#     "/health",
-#     response_model=HealthResponse,
-#     name="health:get-data",
-# )
-# async def health():
-#     is_health = False
-#     try:
-#         test_input = MachineLearningDataInput(
-#             **json.loads(open(INPUT_EXAMPLE, "r").read())
-#         )
-#         test_point = test_input.get_np_array()
-#         get_prediction(test_point)
-#         is_health = True
-#         return HealthResponse(status=is_health)
-#     except Exception:
-#         raise HTTPException(status_code=404, detail="Unhealthy")
+@router.get(
+    "/health",
+    response_model=HealthResponse,
+    name="health:get-data",
+)
+async def health():
+    is_health = False
+    try:
+        test_input = MachineLearningDataInput(
+            **json.loads(open(INPUT_EXAMPLE, "r").read())
+        )
+        test_point = test_input.get_np_array()
+        print("ok",test_point[0])
+        get_prediction(test_point[0])
+        is_health = True
+        return HealthResponse(status=is_health)
+    except Exception as err:
+        raise HTTPException(status_code=404, detail=err)
