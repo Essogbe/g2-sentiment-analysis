@@ -1,16 +1,16 @@
 [tool.poetry]
 package-mode = false
-name = "Sentiment analysis"
+name = "sentiment-analysis"
 version = "0.1.0"
 description = "A short description of the project"
-authors = ["Groupe 2 <you <you@example.com>>"]
+authors = ["Groupe 2 <you@example.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 fastapi = "0.115.11"
 uvicorn = "0.23.2"
 pydantic = "2.4.2"
-requests = "2.32.0"
+requests = "^2.31.0"
 loguru = "0.7.2"
 joblib = "1.3.2"
 scikit-learn = "1.5.0"
@@ -22,27 +22,22 @@ autopep8 = "2.0.4"
 ipdb = "0.13.13"
 pylint = "3.0.1"
 
-[tool.poetry.group.aws]
-optional = true
-
 [tool.poetry.group.aws.dependencies]
 mangum = "^0.17.0"
 
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+requires = ["poetry-core>=1.2.0"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 88
-target-version = ['py39', 'py310', 'py311']
-include = '\.pyi?$'
+target-version = ['py310', 'py311']
 exclude = '''
 /(
-  \.toml
-  |\.sh
-  |\.git
-  |\.ini
-  |Dockerfile
-  |Jenkinfile
+  \.git
+  | \.venv
+  | __pycache__
+  | build
+  | dist
 )/
 '''
