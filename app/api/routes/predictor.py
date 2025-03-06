@@ -57,7 +57,7 @@ async def predict(data_input: str):
     except Exception as err:
         raise HTTPException(status_code=500, detail=f"Exception: {err}")
 
-    return MachineLearningResponse(**prediction)
+    return MachineLearningResponse(**{"score_0":prediction[0],"score_1":prediction[1]})
 
 
 @router.get(
