@@ -20,5 +20,8 @@ jobs:
         run: |
           make install
       - name: Test with pytest
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
+          
           make test
