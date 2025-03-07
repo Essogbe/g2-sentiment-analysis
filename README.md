@@ -10,6 +10,7 @@ Application  web : https://cine-s4gn.vercel.app
 
 API : https://g2-sentiment-analysis-844747804346.us-central1.run.app/docs
 
+Rapport final : https://docs.google.com/document/d/1lDZlo5FaIMBxwYxUze4pZZXf0Ag2MjEX/edit?usp=drivesdk&ouid=109115452173640326314&rtpof=true&sd=true
 
 
 ## Development Requirements
