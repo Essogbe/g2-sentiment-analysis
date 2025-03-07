@@ -14,6 +14,8 @@ Rapport final : https://docs.google.com/document/d/1lDZlo5FaIMBxwYxUze4pZZXf0Ag2
 
 PowerPoint : https://docs.google.com/presentation/d/1lLk-iH9e87zmPT-Fjl8XBUeJGmiEOiJX/edit?usp=drivesdk&ouid=109115452173640326314&rtpof=true&sd=true
 
+
+Notebook : https://colab.research.google.com/drive/14fYRsI99CuV09egAwon33Gcwqnfdu6iI#scrollTo=OCNDEYHyx9ZA
 ## Development Requirements
 
 - Python >= 3.10
