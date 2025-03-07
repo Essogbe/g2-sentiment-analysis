@@ -2,7 +2,13 @@
 
 ![aviscine.png](aviscine.png)
 
-Projet d'Analyse de sentiment avec BERT et FastAPI
+Projet d'Analyse de sentiment avec BERT et FastAPI 
+
+Ce projet est basé sur un entrainement et déploiement d'un modèle de classification binaire en utilisant les Transformers via BERT  et FastAPI.
+
+Application  web : https://cine-s4gn.vercel.app
+
+API : https://g2-sentiment-analysis-844747804346.us-central1.run.app/docs
 
 
 
