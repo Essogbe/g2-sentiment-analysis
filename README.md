@@ -1,10 +1,14 @@
 # Sentiment analysis
 
-A short description of the project
+![aviscine.png](aviscine.png)
+
+Projet d'Analyse de sentiment avec BERT et FastAPI
+
+
 
 ## Development Requirements
 
-- Python3.11.0
+- Python >= 3.10
 - Pip
 - Poetry (Python Package Manager)
 
@@ -14,6 +18,11 @@ A short description of the project
 MODEL_PATH=./ml/model/
 MODEL_NAME=model.pkl
 ```
+### ENV Variables
+
+Set `HF_TOKEN` and `HF_API_URL` in your environment variables
+
+
 
 ### Update `/predict`
 
@@ -103,31 +112,3 @@ Deploying inference service to Cloud Run
 2. Cloud Build API
 3. IAM API
 
-### Deploy to Cloud Run
-
-1. Run `gcp-deploy.sh`
-
-### Clean up
-
-1. Delete Cloud Run
-2. Delete Docker image in GCR
-
-## AWS
-
-Deploying inference service to AWS Lambda
-
-### Authenticate
-
-1. Install `awscli` and `sam-cli`
-2. `aws configure`
-
-### Deploy to Lambda
-
-1. Run `sam build`
-2. Run `sam deploy --guiChange this portion for other types of models
-
-## Add the correct type hinting when completed
-
-`aws cloudformation delete-stack --stack-name <STACK_NAME_ON_CREATION>`
-
-Made by <https://github.com/arthurhenrique/cookiecutter-fastapi/graphs/contributors> with ❤️
