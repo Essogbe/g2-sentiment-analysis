@@ -43,6 +43,7 @@ To update your machine learning model, add your `load` and `method` [change here
 ```sh
 python -m venv venv
 source venv/bin/activate
+cp .env.example .env
 make install
 ```
 
